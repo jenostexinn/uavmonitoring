@@ -1,0 +1,16 @@
+import googlemaps
+
+gmaps = googlemaps.Client(key='YOUR_API_KEY')
+
+def analyze_traffic_and_suggest_routes(start_location, end_location):
+    traffic_data = gmaps.directions(start_location, end_location, mode="driving", alternatives=True)
+
+    alternative_routes = []
+    for route in traffic_data:
+        alternative_routes.append({
+            "summary": route["summary"],
+            "duration": route["legs"][0]["duration"]["text"],
+            "distance": route["legs"][0]["distance"]["text"]
+        })
+
+    return alternative_routes

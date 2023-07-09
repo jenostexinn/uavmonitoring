@@ -1,0 +1,17 @@
+def connect_with_customers():
+    app_client.connect()
+
+    while True:
+        query = app_client.receive_query()
+        response = process_query(query)
+        app_client.send_response(response)
+
+def process_query(query):
+    response = ''
+
+    if query == 'traffic':
+        response = get_traffic_info()
+    elif query == 'route':
+        response = suggest_alternative_routes()
+
+    return response

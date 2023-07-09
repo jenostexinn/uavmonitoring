@@ -1,0 +1,31 @@
+from dronekit import connect, VehicleMode
+import time
+
+connection_string = '/dev/ttyS0'
+vehicle = connect(connection_string, wait_ready=True)
+
+def gather_data():
+    image = capture_image()
+    traffic_info = analyze_traffic(image)
+    store_data(image, traffic_info)
+
+def capture_image():
+    image = ai_camera.capture_image()
+    return image
+
+def analyze_traffic(image):
+    traffic_info = computer_vision.detect_traffic(image)
+    return traffic_info
+
+def store_data(image, traffic_info):
+    data = {
+        'image': image,
+        'traffic_info': traffic_info
+    }
+    data_transmitter.transmit(data)
+
+while True:
+    gather_data()
+    time.sleep(1)
+
+vehicle.close()

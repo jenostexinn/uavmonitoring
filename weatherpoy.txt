@@ -1,0 +1,16 @@
+import requests
+
+def get_environmental_information():
+    weather_api_key = 'YOUR_API_KEY'
+    weather_url = f'https://api.example.com/weather?apikey={weather_api_key}&location=your_location'
+    response = requests.get(weather_url)
+
+    if response.status_code == 200:
+        weather_data = response.json()
+
+    air_quality_api_key = 'YOUR_API_KEY'
+    air_quality_url = f'https://api.example.com/airquality?apikey={air_quality_api_key}&location=your_location'
+    response = requests.get(air_quality_url)
+
+    if response.status_code == 200:
+        air_quality_data = response.json()
